@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Registration</title>
+    <style>
+        /* General reset */
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ffff; /* Glowing cyan */
+            background: url('hacker.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .background {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            padding-left: 5%;
+        }
+
+        .container {
+            background: #000; /* Solid black background */
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 15px #00ffff;
+            padding: 30px; /* Increased padding for form */
+            width: 500px; /* Adjusted form width */
+            border-radius: 10px;
+        }
+
+        h1 {
+    text-align: center;
+    color: #00ffff;
+    font-size: 28px; /* Larger heading */
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    text-align: center;
+    color: #00b3b3;
+    font-size: 20px; /* Slightly larger tagline */
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #00b3b3;
+    font-size: 16px; /* Slightly increased label size */
+    font-weight: bold;
+}
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px; /* Slightly bigger padding for inputs */
+            margin-bottom: 15px; /* Increased margin for better spacing */
+            border: 1px solid #00ffff;
+            background: #000;
+            color: #00ffff;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        select[multiple] {
+            height: auto; /* Adjust height for multi-select dropdown */
+            overflow: hidden;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            box-shadow: 0 0 10px #00ffff;
+            outline: none;
+        }
+
+        button {
+            background: #00b3b3;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            font-size: 16px; /* Slightly larger button font */
+        }
+
+        button:hover {
+            background: #00ffff;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .note {
+            text-align: center;
+            color: #00b3b3;
+            font-size: 14px; /* Increased font size slightly */
+        }
+
+        .note a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <h1>Ignite Innovation: Hackathon</h1>
+            <div class="tagline">Spark Your Ideas, Unleash Your Potential</div>
+            <form id="registrationForm" action="submit.php" method="POST" onsubmit="return validateForm()">
+                <label for="teamName">Individual/Team Name:</label>
+                <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <label for="teamSize">Team Size:</label>
+                <select id="teamSize" name="teamSize" required>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+
+                <label for="technologyPreferences">Technology Preferences:</label>
+                <select id="technologyPreferences" name="technologyPreferences[]" multiple required>
+                    <option value="Python">Python</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C++">C++</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Go">Go</option>
+                </select>
+
+                <label for="githubLink">GitHub Profile or Resume Link:</label>
+                <input type="url" id="githubLink" name="githubLink" placeholder="Enter GitHub or Resume URL" required>
+
+                <label for="projectIdea">Project Idea:</label>
+                <textarea id="projectIdea" name="projectIdea" placeholder="Briefly describe your project idea" rows="4"></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <div class="note">
+                Follow us on Instagram: <a href="https://www.instagram.com/hackathon4all" target="_blank">@hackathon4all</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            const teamName = document.getElementById('teamName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const githubLink = document.getElementById('githubLink').value.trim();
+
+            if (!teamName || !email || !phone || !githubLink) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+
+            if (!email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            if (!phone.match(/^\d{10}$/)) {
+                alert('Please enter a valid 10-digit phone number.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
